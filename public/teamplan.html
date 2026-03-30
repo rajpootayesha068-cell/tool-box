@@ -435,7 +435,104 @@
     </div>
 
      <div id="footer"></div>
-     
+    
+     <script>
+        // Team calculator functionality
+        const teamSeats = document.getElementById('teamSeats');
+        const seatsCount = document.getElementById('seatsCount');
+        const monthlyCost = document.getElementById('monthlyCost');
+        const annualCost = document.getElementById('annualCost');
+        const savingsAmount = document.getElementById('savingsAmount');
+        const savingsPercent = document.getElementById('savingsPercent');
+        const billingPeriod = document.getElementById('billingPeriod');
+        const billingToggle = document.getElementById('teamBillingToggle');
+       
+        // Seat options
+        document.querySelectorAll('.seat-option').forEach(button => {
+            button.addEventListener('click', function() {
+                const seats = parseInt(this.dataset.seats);
+                teamSeats.value = seats;
+                updateCalculator();
+                updateSeatsOptions();
+            });
+        });
+       
+        // Range input
+        teamSeats.addEventListener('input', function() {
+            updateCalculator();
+            updateSeatsOptions();
+        });
+       
+        // Billing toggle
+        billingToggle.addEventListener('change', updateCalculator);
+       
+        function updateCalculator() {
+            const seats = parseInt(teamSeats.value);
+            seatsCount.textContent = seats;
+           
+            // Determine tier and pricing
+            let pricePerSeat;
+            let discount;
+           
+            if (seats >= 4 && seats <= 10) {
+                pricePerSeat = 6.50;
+                discount = 10;
+            } else if (seats >= 15 && seats <= 50) {
+                pricePerSeat = 6.66;
+                discount = 20;
+            } else {
+                pricePerSeat = 5.83;
+                discount = 30;
+            }
+           
+            // Calculate costs
+            const monthlyTotal = pricePerSeat * seats;
+            const annualTotal = monthlyTotal * 12;
+            const savings = monthlyTotal * 12 * (discount/100);
+           
+            // Update display
+            if (billingToggle.checked) {
+                // Annual billing
+                monthlyCost.textContent = `$${(annualTotal / 12).toFixed(2)}`;
+                annualCost.textContent = `$${annualTotal.toFixed(2)}`;
+                billingPeriod.textContent = 'per month (annual billing)';
+                savingsAmount.textContent = `$${savings.toFixed(2)}`;
+                savingsPercent.textContent = `${discount}% discount`;
+            } else {
+                // Monthly billing
+                monthlyCost.textContent = `$${monthlyTotal.toFixed(2)}`;
+                annualCost.textContent = `$${(monthlyTotal * 12).toFixed(2)}`;
+                billingPeriod.textContent = 'per month';
+                savingsAmount.textContent = '$0.00';
+                savingsPercent.textContent = 'No discount';
+            }
+        }
+       
+        function updateSeatsOptions() {
+            const currentSeats = parseInt(teamSeats.value);
+            document.querySelectorAll('.seat-option').forEach(button => {
+                if (parseInt(button.dataset.seats) === currentSeats) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+       
+        function resetCalculator() {
+            teamSeats.value = 10;
+            billingToggle.checked = true;
+            updateCalculator();
+            updateSeatsOptions();
+        }
+       
+        // Initialize calculator
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCalculator();
+            updateSeatsOptions();
+        });
+    </script>
+
    <!-- JavaScript Files  -->
     <script src="js/layout.js"></script>
     <script type="module" src="js/script.js"></script>

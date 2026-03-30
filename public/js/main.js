@@ -198,7 +198,7 @@ function createParticles() {
         p.style.animation = `floatParticle ${Math.random() * 20 + 10}s linear infinite`;
         container.appendChild(p);
     }
-}
+} 
 
 // ==================================================
 // AUTH (LOGIN / SIGNUP)
@@ -272,11 +272,7 @@ function initializeUIExtras() {
         card.addEventListener('mouseleave', () => card.style.zIndex = '1');
     });
 }
-
-
-
-
-    // background.js
+// background.js
 (function () {
   const orbs = document.querySelectorAll(".glow-orb");
 
@@ -286,7 +282,6 @@ function initializeUIExtras() {
     const x = Math.random() * 60 - 30; // -30px to +30px
     const y = Math.random() * 60 - 30;
     const scale = 1 + Math.random() * 0.15;
-
     orb.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
   }
 
@@ -298,6 +293,3 @@ function initializeUIExtras() {
     orbs.forEach(moveOrb);
   }, 6000);
 })();
-
-
-
