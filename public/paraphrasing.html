@@ -784,7 +784,7 @@ function shareReport() {
 }
 
 // ==============================
-// 🔹 Utility — Toast
+// 🔹 Utility — Toast (FIXED)
 // ==============================
 function showToast(msg, type = 'success') {
     document.querySelectorAll('.plagiarism-inline-toast').forEach(t => t.remove());
@@ -794,22 +794,63 @@ function showToast(msg, type = 'success') {
 
     const toast = document.createElement('div');
     toast.className = 'plagiarism-inline-toast';
-    toast.innerHTML = `<span style="font-weight:bold;margin-right:8px;">${icons[type] || 'ℹ'}</span><span>${msg}</span>`;
-    toast.style.cssText = `
-        position: fixed; bottom: 20px; right: 20px;
-        padding: 12px 20px; background: ${colors[type] || '#3b82f6'};
-        color: white; border-radius: 8px; font-size: 14px;
-        z-index: 10000; font-family: 'Inter', sans-serif;
-        animation: slideIn 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        display: flex; align-items: center; gap: 8px;
+
+    toast.innerHTML = `
+        <span style="font-weight:bold;margin-right:8px;">
+            ${icons[type] || 'ℹ'}
+        </span>
+        <span>${msg}</span>
     `;
+
+    // ✅ FIXED POSITION (NO CSS CONFLICT)
+    toast.style.position = 'fixed';
+    toast.style.top = '20px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%)';
+
+    toast.style.padding = '12px 20px';
+    toast.style.background = colors[type] || '#3b82f6';
+    toast.style.color = 'white';
+    toast.style.borderRadius = '8px';
+    toast.style.fontSize = '14px';
+    toast.style.zIndex = '10000';
+    toast.style.fontFamily = 'Inter, sans-serif';
+    toast.style.display = 'flex';
+    toast.style.alignItems = 'center';
+    toast.style.gap = '8px';
+    toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+
     document.body.appendChild(toast);
+
+    // ✅ CLEAN ANIMATION (NO KEYFRAME CONFLICTS)
+    toast.animate(
+        [
+            { transform: 'translate(-50%, -20px)', opacity: 0 },
+            { transform: 'translate(-50%, 0)', opacity: 1 }
+        ],
+        {
+            duration: 300,
+            easing: 'ease-out',
+            fill: 'forwards'
+        }
+    );
+
     setTimeout(() => {
-        toast.style.animation = 'slideOut 0.3s ease';
+        toast.animate(
+            [
+                { transform: 'translate(-50%, 0)', opacity: 1 },
+                { transform: 'translate(-50%, -20px)', opacity: 0 }
+            ],
+            {
+                duration: 300,
+                easing: 'ease-in',
+                fill: 'forwards'
+            }
+        );
+
         setTimeout(() => toast.remove(), 300);
     }, 3000);
 }
-
 // ==============================
 // 🔹 Init
 // ==============================
@@ -876,8 +917,10 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
    <!-- JavaScript Files  -->
-    <script src="js/layout.js"></script>
-    <script  type="module" src="js/script.js"></script>
+  
+       <script src="js/layout.js"></script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/script.js"></script>
 </body>
 </html>
 

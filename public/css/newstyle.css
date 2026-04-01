@@ -2955,18 +2955,33 @@ a { text-decoration: none; }
 /* ========================================
    RESPONSIVE
    ======================================== */
+
+/* ---- 1200px: large tablets / small laptops ---- */
 @media screen and (max-width: 1200px) {
     .tools-grid { gap: 1.8rem; }
+
+    .header-container { padding: 0.5rem 1.5rem; }
+
+    .footer-content { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 1.5rem; }
 }
 
+/* ---- 992px: tablets landscape ---- */
 @media screen and (max-width: 992px) {
     .tools-grid { grid-template-columns: repeat(2, 1fr); gap: 1.8rem; }
-    .features-banner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; padding: 2rem; }
+
+    .features-banner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; padding: 2rem; border-radius: 32px; }
+
     .standards-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .metrics-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .metrics-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
     .footer-content { grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+    .concept-container { max-width: 100%; padding: 0 1rem; }
+
+    .description-cards { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* ---- 768px: tablets portrait ---- */
 @media screen and (max-width: 768px) {
     .desktop-nav { display: none; }
     .mobile-menu-btn { display: flex; }
@@ -2975,32 +2990,60 @@ a { text-decoration: none; }
     .logo-image-wrapper { width: 40px; height: 40px; }
     .logo-text { font-size: 1.2rem; }
 
-    .hero-section { padding: 2rem 1rem 3rem; }
-    .simple-title { font-size: 1.8rem; }
-    .highlight { font-size: 1.5rem; }
-    .section-title { font-size: 1.8rem; }
-    .conclusion-title { font-size: 2rem; }
-    .conclusion-card { padding: 2.5rem 1.8rem; border-radius: 50px; }
+    .hero-section { padding: 5rem 1rem 3rem; }
+    .simple-title { font-size: clamp(1.6rem, 5vw, 2.2rem); }
+    .highlight { font-size: clamp(1.3rem, 4vw, 1.8rem); }
+    .simple-subtitle { font-size: 0.95rem; padding: 0; }
 
-    .carousel-arrow { width: 40px; height: 40px; }
-    .carousel-arrow.prev-arrow { left: -10px; }
-    .carousel-arrow.next-arrow { right: -10px; }
+    .section-title { font-size: clamp(1.6rem, 4vw, 2rem); }
+    .section-header { margin-bottom: 2rem; }
 
-    .testimonial-card { flex: 0 0 calc(50% - 1rem); }
-    .faq-item.active .faq-answer { max-height: 300px; }
+    .description-cards { grid-template-columns: 1fr; gap: 1.5rem; }
+    .description-card { padding: 2rem 1.5rem; }
+
+    .tools-collection { padding: 3rem 1rem; }
+    .tools-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin: 2rem 0; }
+    .tool-card { min-height: auto; padding: 1.8rem 1.5rem; border-radius: 24px; }
+    .card-title { font-size: 1.3rem; }
+
+    .features-banner { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; padding: 1.5rem; border-radius: 24px; margin-top: 2.5rem; }
+    .feature-block i { font-size: 1.6rem; padding: 0.8rem; }
+    .block-text h4 { font-size: 0.95rem; }
+    .block-text p { font-size: 0.82rem; }
 
     .concept-section { padding: 3rem 1rem; }
-    .text-card-full { padding: 2rem; }
-
-    .concept-title { font-size: 2rem; }
+    .text-card-full { padding: 2rem 1.5rem; border-radius: 24px; }
+    .concept-title { font-size: clamp(1.6rem, 4vw, 2rem); }
     .concept-paragraph { font-size: 1rem; line-height: 1.7; }
-
-    .concept-quote { padding: 1rem; flex-direction: column; text-align: center; }
+    .dropcap { font-size: 2.8rem; }
+    .concept-quote { padding: 1rem; flex-direction: column; text-align: center; gap: 0.6rem; }
+    .concept-quote i { font-size: 1.5rem; }
+    .feature-highlights { grid-template-columns: 1fr; gap: 1rem; }
     .highlight-item { flex-direction: column; text-align: center; align-items: center; }
     .highlight-text-content { text-align: center; }
 
-    .score-card { flex-direction: column; text-align: center; }
+    .standards-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: repeat(3, 1fr); }
+    .score-card { flex-direction: column; text-align: center; gap: 1rem; }
+    .score-circle { width: 75px; height: 75px; }
+    .score-number { font-size: 1.5rem; }
 
+    .carousel-arrow { width: 40px; height: 40px; font-size: 0.9rem; }
+    .carousel-arrow.prev-arrow { left: -10px; }
+    .carousel-arrow.next-arrow { right: -10px; }
+    .testimonial-card { flex: 0 0 calc(50% - 1rem); }
+    .card-inner { padding: 2rem 1.5rem; border-radius: 28px; }
+    .faq-item.active .faq-answer { max-height: 320px; }
+    .faq-question { padding: 1.2rem 1.5rem; }
+    .question-text { font-size: 1rem; }
+    .answer-content { padding: 0 1.5rem 1.2rem; }
+
+    .conclusion-title { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+    .conclusion-card { padding: 2.5rem 1.8rem; border-radius: 40px; }
+    .conclusion-paragraph p { font-size: 1rem; }
+    .cta-button { padding: 1rem 2rem; font-size: 1rem; }
+
+    .concept-stats { gap: 1.2rem; }
     .stat-bubble { width: 100px; height: 100px; }
     .stat-number { font-size: 1.8rem; }
     .stat-label { font-size: 0.65rem; }
@@ -3010,42 +3053,122 @@ a { text-decoration: none; }
     .footer-column h4 { text-align: center; }
     .footer-links { text-align: center; }
     .social-links { justify-content: center; }
+    .footer { padding: 2.5rem 1rem 1.5rem; }
 }
 
+/* ---- 640px: large phones ---- */
 @media screen and (max-width: 640px) {
     .tools-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .tool-card { min-height: auto; }
+
     .testimonial-card { flex: 0 0 100%; }
+
     .feature-highlights { grid-template-columns: 1fr; gap: 1rem; }
+
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+
+    .features-banner { grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.2rem; border-radius: 20px; }
+
+    .description-cards { grid-template-columns: 1fr; }
+
+    .carousel-viewport { border-radius: 24px; }
+
+    .conclusion-card { border-radius: 30px; padding: 2rem 1.5rem; }
+    .conclusion-cta { gap: 1rem; }
+
+    .faq-question { padding: 1rem 1.2rem; }
+    .answer-content { padding: 0 1.2rem 1rem; }
 }
 
+/* ---- 480px: standard phones ---- */
 @media screen and (max-width: 480px) {
     .desktop-nav { display: none; }
     .mobile-menu-btn { display: flex; }
+
+    .header-container { padding: 0.5rem 0.8rem; height: 60px; }
     .logo-text { font-size: 1rem; }
-    .logo-image-wrapper { width: 38px; height: 38px; }
+    .logo-image-wrapper { width: 36px; height: 36px; }
 
-    .simple-title { font-size: 1.5rem; }
-    .highlight { font-size: 1.3rem; }
-    .conclusion-title { font-size: 1.6rem; }
+    .hero-section { padding: 4.5rem 0.8rem 2.5rem; }
+    .simple-title { font-size: 1.4rem; }
+    .highlight { font-size: 1.2rem; }
+    .simple-subtitle { font-size: 0.9rem; }
 
-    .tool-card { min-height: 550px; padding: 1.8rem 1.5rem; }
-    .card-title { font-size: 1.4rem; }
-    .card-content p { font-size: 0.9rem; }
-    .feature-tag { font-size: 0.7rem; padding: 0.3rem 0.8rem; }
-    .card-btn { padding: 0.7rem 1.5rem; font-size: 0.9rem; }
+    .section-tag { font-size: 0.78rem; padding: 0.5rem 1.1rem; }
+    .section-title { font-size: 1.5rem; }
+    .section-subtitle { font-size: 0.9rem; }
 
-    .features-banner { grid-template-columns: 1fr; gap: 1.2rem; padding: 1.5rem; }
-    .toolkit-menu { width: 240px; }
-    .profile-menu { width: 200px; }
-    .toolkit-scrollable-content { max-height: 250px; }
+    .tool-card { padding: 1.5rem 1.2rem; border-radius: 20px; }
+    .card-title { font-size: 1.2rem; }
+    .card-content p { font-size: 0.88rem; }
+    .feature-tag { font-size: 0.68rem; padding: 0.3rem 0.7rem; }
+    .card-btn { padding: 0.65rem 1.3rem; font-size: 0.85rem; }
+    .card-header .card-icon { width: 50px; height: 50px; font-size: 1.4rem; }
+
+    .features-banner { grid-template-columns: 1fr; gap: 1rem; padding: 1.2rem; border-radius: 18px; }
+    .feature-block { gap: 0.75rem; }
+    .feature-block i { font-size: 1.4rem; padding: 0.7rem; }
+
+    .text-card-full { padding: 1.2rem; border-radius: 18px; }
+    .concept-title { font-size: 1.4rem; }
+    .concept-paragraph { font-size: 0.92rem; }
+    .dropcap { font-size: 2.2rem; }
+
+    .toolkit-menu { width: 260px; }
+    .profile-menu { width: 210px; }
+    .toolkit-scrollable-content { max-height: 260px; }
+
+    .metrics-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+    .metric-card { padding: 1.2rem 0.8rem; }
 
     .carousel-arrow { display: none; }
-    .cta-button { width: 100%; justify-content: center; }
-    .badge-item { width: 100%; justify-content: center; }
+    .card-inner { padding: 1.5rem 1.2rem; border-radius: 24px; }
+    .testimonial-text { font-size: 0.88rem; }
 
-    .text-card-full { padding: 1.5rem; }
+    .faq-question { padding: 1rem; gap: 0.6rem; }
+    .question-text { font-size: 0.92rem; gap: 0.6rem; }
+    .answer-content { padding: 0 1rem 1rem; }
+    .answer-content p { font-size: 0.9rem; padding-left: 1.6rem; }
+    .faq-item.active .faq-answer { max-height: 360px; }
+
+    .conclusion-card { padding: 1.8rem 1.2rem; border-radius: 24px; }
+    .conclusion-title { font-size: 1.4rem; }
+    .conclusion-paragraph p { font-size: 0.92rem; }
+    .cta-button { width: 100%; justify-content: center; padding: 0.9rem 1.5rem; font-size: 0.95rem; border-radius: 50px; }
+    .badge-item { width: 100%; justify-content: center; font-size: 0.82rem; }
+    .feature-badges { gap: 0.6rem; }
+
     .stat-bubble { width: 85px; height: 85px; }
     .stat-number { font-size: 1.5rem; }
+    .stat-label { font-size: 0.62rem; }
+    .concept-stats { gap: 1rem; }
+
+    .footer { padding: 2rem 0.8rem 1.2rem; }
+    .footer-logo span { font-size: 1.2rem; }
+}
+
+/* ---- 360px: small phones ---- */
+@media screen and (max-width: 360px) {
+    .header-container { padding: 0.4rem 0.6rem; height: 56px; }
+    .logo-text { font-size: 0.9rem; }
+    .logo-image-wrapper { width: 32px; height: 32px; }
+
+    .simple-title { font-size: 1.2rem; }
+    .highlight { font-size: 1.1rem; }
+
+    .tool-card { padding: 1.2rem 1rem; }
+    .card-title { font-size: 1.1rem; }
+
+    .conclusion-card { padding: 1.5rem 1rem; border-radius: 20px; }
+    .conclusion-title { font-size: 1.2rem; }
+
+    .stat-bubble { width: 75px; height: 75px; }
+    .stat-number { font-size: 1.3rem; }
+
+    .mobile-nav { max-width: 290px; }
+
+    .faq-question { padding: 0.9rem; }
+    .question-text { font-size: 0.85rem; }
 }
 
 /* Dark mode overrides for toolkit/profile dropdowns */
